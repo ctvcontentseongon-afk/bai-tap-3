@@ -1,0 +1,13 @@
+{
+  "primary": "#1E3A5F",
+  "accent": "#FF6B35",
+  "secondary": "#2E86AB",
+  "text_dark": "#1A1A2E",
+  "text_light": "#FFFFFF",
+  "background": "#FFFFFF",
+  "background_alt": "#F4F7FC",
+  "success": "#27AE60",
+  "warning": "#F39C12",
+  "danger": "#E74C3C",
+  "border": "#DDE3ED"
+}

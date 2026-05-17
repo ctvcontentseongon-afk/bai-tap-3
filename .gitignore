@@ -1,0 +1,40 @@
+# Credentials & secrets
+credentials/
+.env
+*.env.*
+!.env.example
+
+# Outputs (chỉ giữ samples)
+outputs/*
+!outputs/samples/
+!outputs/samples/**
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Template gốc (file lớn, không push)
+mau_bao_cao_seongon.pptx
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OAuth tokens
+token.json
+token_*.json
+*_token.json

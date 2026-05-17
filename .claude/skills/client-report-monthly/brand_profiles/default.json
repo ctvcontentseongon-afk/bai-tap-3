@@ -1,0 +1,29 @@
+{
+  "client_name": "SEONGON Agency",
+  "domain": "seongon.com",
+  "logo_path": "brand_profiles/logos/default.png",
+
+  "colors": {
+    "primary":    "#1E3A5F",
+    "secondary":  "#FF6B35",
+    "accent":     "#FF6B35",
+    "background": "#FFFFFF",
+    "text_dark":  "#1A1A2E",
+    "text_light": "#6C757D",
+    "success":    "#28A745",
+    "warning":    "#FFC107",
+    "danger":     "#DC3545"
+  },
+
+  "fonts": {
+    "heading":  "Montserrat",
+    "body":     "Open Sans",
+    "fallback": "Arial"
+  },
+
+  "style": {
+    "tone":          "professional",
+    "number_format": "vietnamese",
+    "currency":      "VND"
+  }
+}

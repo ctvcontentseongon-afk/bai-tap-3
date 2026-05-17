@@ -1,0 +1,188 @@
+{
+  "_meta": {
+    "description": "Kế hoạch hành động SEO: việc đã hoàn thành trong tháng + kế hoạch tháng tới + khuyến nghị chiến lược dài hạn.",
+    "period_current":  "Tháng 4/2026",
+    "period_next":     "Tháng 5/2026"
+  },
+
+  "completed_this_month": [
+    {
+      "id": "done_01",
+      "task": "Tối ưu meta title & description cho 15 trang ưu tiên",
+      "category": "On-page SEO",
+      "owner": "Content Team",
+      "completed_date": "2026-04-12",
+      "impact": "CTR cải thiện trên 6/15 trang, avg position tăng 0,8 bậc",
+      "evidence": "GSC: avg_position 9,1 → 8,3 trong tháng 4"
+    },
+    {
+      "id": "done_02",
+      "task": "Triển khai chiến dịch PR Digital — outreach 3 trang báo DR>70",
+      "category": "Link Building",
+      "owner": "SEO Lead",
+      "completed_date": "2026-04-20",
+      "impact": "Đạt 3/3 backlink chất lượng cao (vnexpress DR78, cafebiz DR72, brandsvietnam DR65). DR tăng từ 39 → 42",
+      "evidence": "Ahrefs: 5 referring domains DR>60 mới trong tháng"
+    },
+    {
+      "id": "done_03",
+      "task": "Publish 4 bài blog chất lượng cao theo lịch nội dung Q2",
+      "category": "Content Marketing",
+      "owner": "Content Team",
+      "completed_date": "2026-04-28",
+      "impact": "Non-branded sessions tăng 16,3%. Bài /kien-thuc/backlink thu hút 2 backlink tự nhiên",
+      "evidence": "GA4: organic sessions 9.480 → 10.820 (+14,2%)"
+    },
+    {
+      "id": "done_04",
+      "task": "Fix 8 lỗi structured data (FAQ schema) trên trang dịch vụ chính",
+      "category": "Technical SEO",
+      "owner": "Dev Team",
+      "completed_date": "2026-04-08",
+      "impact": "Rich results xuất hiện cho 5/8 trang. Impressions tổng tăng 7.200 (+11,8%)",
+      "evidence": "GSC: impressions 61.200 → 68.400"
+    },
+    {
+      "id": "done_05",
+      "task": "Cải thiện nội dung trang /bang-gia — thêm bảng so sánh gói dịch vụ",
+      "category": "CRO",
+      "owner": "Content Team",
+      "completed_date": "2026-04-15",
+      "impact": "Conversion rate trang /bang-gia tăng từ 2,6% → 2,8%. +7 conversions thêm từ trang này",
+      "evidence": "GA4: conversions trang /bang-gia tháng 4 đạt 35 (tháng 3: 28)"
+    },
+    {
+      "id": "done_06",
+      "task": "Audit và xây dựng lại cấu trúc internal link cho nhóm trang dịch vụ",
+      "category": "On-page SEO",
+      "owner": "SEO Lead",
+      "completed_date": "2026-04-22",
+      "impact": "Link equity phân phối đều hơn. /dich-vu-seo/local tăng trưởng mạnh nhất (+27,9% clicks)",
+      "evidence": "GSC: /dich-vu-seo/local clicks_delta +19 (+27,9%)"
+    }
+  ],
+
+  "in_progress_next_month": [
+    {
+      "id": "plan_01",
+      "task": "Tối ưu Core Web Vitals cho top 5 trang có bounce rate cao nhất",
+      "category": "Technical SEO",
+      "priority": "P1",
+      "owner": "Dev Team",
+      "deadline": "2026-05-10",
+      "target_metric": "LCP < 2,5 giây trên mobile cho cả 5 trang",
+      "rationale": "Bounce rate tăng 3,8pp trong T4 — nguy cơ ảnh hưởng rankings nếu không xử lý"
+    },
+    {
+      "id": "plan_02",
+      "task": "Đẩy 10 keyword vị trí 11-15 lên top 10 — tập trung nội dung + internal link",
+      "category": "On-page SEO",
+      "priority": "P1",
+      "owner": "Content Team",
+      "deadline": "2026-05-31",
+      "target_metric": "Thêm 10 keyword vào top 10 (hiện tại 218 → mục tiêu 228)",
+      "rationale": "CTR tăng 4-6 lần khi keyword chuyển từ pos11-15 sang top 10"
+    },
+    {
+      "id": "plan_03",
+      "task": "Tiếp tục chiến dịch PR Digital — nhắm 2-3 trang báo/tạp chí DR>50",
+      "category": "Link Building",
+      "priority": "P1",
+      "owner": "SEO Lead",
+      "deadline": "2026-05-25",
+      "target_metric": "25+ referring domains mới, tập trung DR>30",
+      "rationale": "Momentum link building T4 rất tốt, cần duy trì để bảo vệ DR mới đạt 42"
+    },
+    {
+      "id": "plan_04",
+      "task": "Thêm internal link + CTA vào 5 bài blog có sessions cao, conversion thấp",
+      "category": "CRO",
+      "priority": "P2",
+      "owner": "Content Team",
+      "deadline": "2026-05-15",
+      "target_metric": "Conversion rate /kien-thuc/seo-la-gi tăng từ 0,4% → 0,8%",
+      "rationale": "Trang này 1.950 sessions/tháng nhưng chỉ 8 conversions — tiềm năng lớn chưa khai thác"
+    },
+    {
+      "id": "plan_05",
+      "task": "Cập nhật nội dung cho 8 keyword đang giảm hạng ('báo giá seo', 'seo tổng thể'...)",
+      "category": "Content Marketing",
+      "priority": "P2",
+      "owner": "Content Team",
+      "deadline": "2026-05-20",
+      "target_metric": "Dừng đà giảm, phục hồi về vị trí T3",
+      "rationale": "8 keyword này có commercial intent cao, giảm hạng sẽ ảnh hưởng trực tiếp đến conversions"
+    },
+    {
+      "id": "plan_06",
+      "task": "Tối ưu title/meta cho 20 trang tiếp theo có CTR < 4% (impression > 500)",
+      "category": "On-page SEO",
+      "priority": "P2",
+      "owner": "Content Team",
+      "deadline": "2026-05-28",
+      "target_metric": "CTR tăng ≥ 1pp cho ít nhất 10/20 trang",
+      "rationale": "CTR giữ nguyên 6,21% dù avg position cải thiện — cần tối ưu để tận dụng thứ hạng tốt hơn"
+    },
+    {
+      "id": "plan_07",
+      "task": "Publish 4 bài blog mới + 1 linkable asset (infographic về SEO ROI)",
+      "category": "Content Marketing",
+      "priority": "P3",
+      "owner": "Content Team",
+      "deadline": "2026-05-31",
+      "target_metric": "Sessions tháng 5 ≥ 13.500 (+8,4% so với T4)",
+      "rationale": "Duy trì momentum content giúp bảo vệ thứ hạng và thu hút backlink tự nhiên"
+    }
+  ],
+
+  "long_term_recommendations": [
+    {
+      "id": "lt_01",
+      "recommendation": "Xây dựng chiến lược Topic Cluster cho 3 chủ đề cốt lõi",
+      "timeline": "Q3/2026 (3 tháng)",
+      "priority": "Cao",
+      "expected_impact": "Tăng thẩm quyền chủ đề → top 3 cho 30-40 keyword nhóm dịch vụ SEO",
+      "detail": "Hiện trang web có nội dung rải rác. Cần xây dựng Pillar Page + 8-10 Cluster Content cho mỗi chủ đề: (1) Dịch vụ SEO, (2) Kiến thức SEO, (3) SEO theo ngành. Mỗi cluster có internal link chặt chẽ giúp Google hiểu cấu trúc và tăng thẩm quyền."
+    },
+    {
+      "id": "lt_02",
+      "recommendation": "Đầu tư vào E-E-A-T: case studies và testimonials có thể kiểm chứng",
+      "timeline": "Q3-Q4/2026 (6 tháng)",
+      "priority": "Cao",
+      "expected_impact": "Cải thiện conversion rate trung bình 20-30% trên trang dịch vụ",
+      "detail": "Google ưu tiên E-E-A-T (Experience-Expertise-Authoritativeness-Trustworthiness). Cần: (1) Case study chi tiết 5-7 khách hàng thực tế, (2) Author profiles cho content team, (3) Chứng chỉ Google đưa vào trang About, (4) Review từ Google Business Profile tích hợp website."
+    },
+    {
+      "id": "lt_03",
+      "recommendation": "Mở rộng sang Local SEO — nhắm từ khóa địa phương cho 5 thành phố lớn",
+      "timeline": "Q4/2026 (3-4 tháng để thấy kết quả)",
+      "priority": "Trung bình",
+      "expected_impact": "Thêm 500-800 organic sessions/tháng từ local searches, conversion rate địa phương cao hơn 40%",
+      "detail": "Trang /dich-vu-seo/local đang tăng trưởng mạnh (+27,9% clicks). Cần: (1) Landing page riêng cho HCM, Đà Nẵng, Hải Phòng, Cần Thơ, (2) Google Business Profile optimization, (3) Local schema markup, (4) Link building từ báo địa phương."
+    },
+    {
+      "id": "lt_04",
+      "recommendation": "Tích hợp Video SEO — YouTube channel kết hợp website",
+      "timeline": "2027 (6-12 tháng setup)",
+      "priority": "Thấp",
+      "expected_impact": "Brand visibility tăng 2-3 lần qua video thumbnails trong SERP",
+      "detail": "Search results ngày càng tích hợp video. Cần xây dựng YouTube channel với nội dung hướng dẫn SEO, sau đó embed vào bài blog tương ứng để tăng thời gian phiên (hiện đang giảm 14,6%) và cải thiện E-E-A-T."
+    },
+    {
+      "id": "lt_05",
+      "recommendation": "Thiết lập hệ thống theo dõi Revenue Attribution từ Organic",
+      "timeline": "Q3/2026 (1-2 tháng setup)",
+      "priority": "Cao",
+      "expected_impact": "Chứng minh ROI SEO với leadership, tạo cơ sở tăng ngân sách SEO 2027",
+      "detail": "Hiện chỉ đo conversions (form liên hệ) nhưng chưa theo dõi được revenue thực sự từ organic. Cần: (1) GA4 enhanced ecommerce tracking, (2) CRM integration (HubSpot/Salesforce), (3) Attribution model rõ ràng, (4) Monthly revenue report từ SEO channel."
+    }
+  ],
+
+  "summary": {
+    "completed_count": 6,
+    "in_progress_count": 7,
+    "long_term_count": 5,
+    "p1_tasks_next_month": 3,
+    "key_focus_next_month": "Technical SEO (Core Web Vitals) + Keyword ranking push + Link building momentum"
+  }
+}

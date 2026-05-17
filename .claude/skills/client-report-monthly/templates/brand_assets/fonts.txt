@@ -1,0 +1,24 @@
+# SEONGON Brand Fonts
+
+## Heading Font
+Montserrat Bold (700)
+Montserrat SemiBold (600)
+
+## Body Font
+Open Sans Regular (400)
+Open Sans Medium (500)
+
+## Fallback Fonts
+Arial Bold (headings)
+Arial (body)
+
+## Font Sizes
+- Slide title: 32pt
+- Section heading: 24pt
+- Body text: 16pt
+- Caption/label: 12pt
+- Footnote: 10pt
+
+## Download
+- Montserrat: https://fonts.google.com/specimen/Montserrat
+- Open Sans: https://fonts.google.com/specimen/Open+Sans

@@ -1,0 +1,57 @@
+{
+  "_huong_dan": "Copy file này, đổi tên thành [ten_client].json (viết thường, dấu gạch dưới). Điền đầy đủ các trường bên dưới. Xóa các trường _comment trước khi dùng.",
+
+  "client_name": "Tên đầy đủ của client — hiển thị trên slide bìa và footer",
+  "domain": "domain.com — không có https://",
+  "logo_path": "brand_profiles/logos/[ten_file].png — PNG nền trong suốt, khuyến nghị 400x120px",
+
+  "colors": {
+    "_huong_dan": "Tất cả màu dạng hex 6 ký tự #RRGGBB. Dùng color picker hoặc hỏi client lấy brand guideline.",
+    "primary":    "#000000",
+    "secondary":  "#000000",
+    "accent":     "#000000",
+    "background": "#FFFFFF",
+    "text_dark":  "#1A1A1A",
+    "text_light": "#666666",
+    "success":    "#28A745",
+    "warning":    "#FFC107",
+    "danger":     "#DC3545",
+
+    "_ghi_chu_mau": {
+      "primary":    "Màu chủ đạo — dùng cho slide bìa, header, section divider",
+      "secondary":  "Màu phụ — dùng cho sub-header, label phân loại",
+      "accent":     "Màu nhấn — dùng cho KPI card, CTA, số liệu quan trọng",
+      "background": "Nền slide — thường là trắng #FFFFFF",
+      "text_dark":  "Màu chữ chính — body text, tiêu đề",
+      "text_light": "Màu chữ phụ — caption, nguồn dữ liệu, ghi chú",
+      "success":    "Màu Điểm tốt — xanh lá, thường giữ nguyên #28A745",
+      "warning":    "Màu Điểm chưa tốt — vàng/cam, thường giữ nguyên #FFC107",
+      "danger":     "Màu cảnh báo khẩn — đỏ, thường giữ nguyên #DC3545"
+    }
+  },
+
+  "fonts": {
+    "_huong_dan": "Dùng đúng tên font như cài trên máy (phân biệt hoa thường). Fallback là font hệ thống khi heading/body chưa cài.",
+    "heading":  "Montserrat",
+    "body":     "Open Sans",
+    "fallback": "Arial",
+
+    "_ghi_chu_font": {
+      "heading":  "Font tiêu đề slide, section header, KPI label — bold",
+      "body":     "Font nội dung: bullet, bảng, narrative text — regular",
+      "fallback": "Font dự phòng nếu heading/body không cài trên máy — luôn dùng font hệ thống"
+    }
+  },
+
+  "style": {
+    "tone":          "professional",
+    "number_format": "vietnamese",
+    "currency":      "VND",
+
+    "_ghi_chu_style": {
+      "tone":          "professional / casual / creative — ảnh hưởng đến cách viết narrative text",
+      "number_format": "vietnamese (1.234.567 dấu chấm) hoặc international (1,234,567 dấu phẩy)",
+      "currency":      "VND / USD / EUR — dùng khi format số tiền"
+    }
+  }
+}

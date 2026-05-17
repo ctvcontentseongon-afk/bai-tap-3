@@ -1,0 +1,226 @@
+{
+  "_meta": {
+    "description": "So sánh tổng hợp các chỉ số giữa tháng hiện tại và tháng trước. Dùng làm nguyên liệu cho phần phân tích Điểm tốt / Điểm chưa tốt / Nguyên nhân / Giải pháp.",
+    "period_current":  "Tháng 4/2026",
+    "period_previous": "Tháng 3/2026"
+  },
+
+  "metrics": [
+
+    {
+      "id": "sessions",
+      "name": "Phiên truy cập (Sessions)",
+      "source": "GA4",
+      "value_current":  12450,
+      "value_previous": 10820,
+      "delta_abs":       1630,
+      "delta_pct":       0.151,
+      "unit": "phiên",
+      "higher_is_better": true,
+      "status": "good",
+      "interpretation": "Lưu lượng truy cập tăng mạnh 15,1% so với tháng 3, vượt mục tiêu tháng 10% đề ra. Đây là mức tăng cao nhất trong 4 tháng đầu năm.",
+      "possible_causes": [
+        "Chiến dịch link building T3 bắt đầu phát huy tác dụng — 38 tên miền mới tham chiếu trong tháng 3 đã dẫn đến tăng thứ hạng",
+        "Non-branded keywords tăng 16,3% so với tháng trước, cho thấy nội dung mới đang được Google index và xếp hạng tốt hơn",
+        "Mùa vụ tự nhiên: tháng 4 là thời điểm doanh nghiệp chuẩn bị chiến lược Q2, nhu cầu tìm kiếm dịch vụ SEO tăng"
+      ],
+      "suggested_actions": [
+        "Duy trì tần suất publish 4 bài/tháng để giữ đà tăng trưởng organic",
+        "Phân tích top 5 trang có sessions tăng mạnh nhất để nhân rộng mô hình nội dung",
+        "Đặt mục tiêu tháng 5: sessions ≥ 13.500 (+8,4%)"
+      ]
+    },
+
+    {
+      "id": "gsc_clicks",
+      "name": "Lượt nhấp GSC (Clicks)",
+      "source": "GSC",
+      "value_current":  4250,
+      "value_previous": 3820,
+      "delta_abs":       430,
+      "delta_pct":       0.113,
+      "unit": "lượt nhấp",
+      "higher_is_better": true,
+      "status": "good",
+      "interpretation": "Lượt nhấp tăng 11,3% nhờ thứ hạng từ khóa cải thiện (avg position từ 9,1 → 8,3) và số keyword trong top 10 tăng từ 195 → 218.",
+      "possible_causes": [
+        "Từ khóa chuyển đổi cao ('dịch vụ seo', 'công ty seo hà nội') leo hạng, tăng khả năng hiển thị ở vị trí tốt hơn",
+        "Tối ưu meta title/description 15 trang trong T3 bắt đầu cải thiện CTR một số trang",
+        "Số keyword mới vào top 10 trong tháng: 23 keyword, cung cấp thêm điểm tiếp cận mới"
+      ],
+      "suggested_actions": [
+        "Tiếp tục tối ưu meta title/description cho 20 trang tiếp theo có impressions cao nhưng CTR thấp (<4%)",
+        "Theo dõi 8 keyword đang giảm hạng (báo giá seo, seo tổng thể...) — xem xét cập nhật nội dung"
+      ]
+    },
+
+    {
+      "id": "conversions",
+      "name": "Chuyển đổi (Conversions)",
+      "source": "GA4",
+      "value_current":  186,
+      "value_previous": 152,
+      "delta_abs":        34,
+      "delta_pct":       0.224,
+      "unit": "chuyển đổi",
+      "higher_is_better": true,
+      "status": "good",
+      "interpretation": "Chuyển đổi tăng vượt trội 22,4%, cao hơn tốc độ tăng sessions (15,1%). Tỷ lệ chuyển đổi cải thiện nhẹ từ 1,40% → 1,49%, cho thấy chất lượng traffic tốt hơn.",
+      "possible_causes": [
+        "Trang /bang-gia cải thiện nội dung tháng trước đã tăng conversion rate từ 2,6% → 2,8%",
+        "Traffic từ non-branded keywords (người dùng có intent rõ ràng hơn) tăng tỷ trọng",
+        "Trang /dich-vu-seo nhận 90 clicks thêm (+15%) — là trang có conversion rate cao nhất site"
+      ],
+      "suggested_actions": [
+        "A/B test CTA trên trang /khoa-hoc-seo — conversion rate 1,7% vẫn còn tiềm năng tăng",
+        "Tối ưu trang /kien-thuc/seo-la-gi: sessions cao (1.950) nhưng chỉ 8 conversions (0,4%) — thêm internal link đến /dich-vu-seo"
+      ]
+    },
+
+    {
+      "id": "domain_rating",
+      "name": "Thẩm quyền tên miền — DR (Domain Rating)",
+      "source": "Ahrefs",
+      "value_current":  42,
+      "value_previous": 39,
+      "delta_abs":       3,
+      "delta_pct":       0.077,
+      "unit": "điểm",
+      "higher_is_better": true,
+      "status": "good",
+      "interpretation": "DR tăng 3 điểm (39 → 42) nhờ 38 referring domains mới, trong đó có 5 tên miền DR>60 từ báo lớn (vnexpress, cafebiz, brandsvietnam). Đây là mức tăng DR tốt nhất trong 12 tháng qua.",
+      "possible_causes": [
+        "Chiến dịch PR Digital T3-T4: outreach thành công đến 3 trang báo DR>70",
+        "Nội dung /kien-thuc/seo-la-gi thu hút 2 backlink tự nhiên từ blog giáo dục",
+        "Tỷ lệ dofollow/nofollow lành mạnh (74%/26%) giúp Google đánh giá profile link tự nhiên"
+      ],
+      "suggested_actions": [
+        "Tiếp tục chiến lược PR Digital: nhắm thêm 2-3 trang báo/tạp chí DR>50 trong T5",
+        "Tạo linkable asset mới (infographic hoặc research report) để thu hút backlink thụ động"
+      ]
+    },
+
+    {
+      "id": "referring_domains",
+      "name": "Tên miền liên kết (Referring Domains)",
+      "source": "Ahrefs",
+      "value_current":  284,
+      "value_previous": 251,
+      "delta_abs":        33,
+      "delta_pct":       0.131,
+      "unit": "tên miền",
+      "higher_is_better": true,
+      "status": "good",
+      "interpretation": "Tăng ròng 33 tên miền mới (+13,1%), tỷ lệ tốt (38 mới − 5 mất). Số tên miền mất (5) ở mức kiểm soát được, chủ yếu từ các nguồn chất lượng thấp.",
+      "possible_causes": [
+        "Hoạt động link building có hệ thống trong T3 đang cho kết quả trong T4",
+        "Brand awareness tăng: 2 backlink tự nhiên không có trong kế hoạch outreach"
+      ],
+      "suggested_actions": [
+        "Kiểm tra và theo dõi 5 backlink mất — liên hệ lại webmaster nếu do lỗi kỹ thuật",
+        "Đặt mục tiêu T5: thêm 25+ referring domains mới, tập trung DR > 30"
+      ]
+    },
+
+    {
+      "id": "bounce_rate",
+      "name": "Tỷ lệ thoát (Bounce Rate)",
+      "source": "GA4",
+      "value_current":  0.423,
+      "value_previous": 0.385,
+      "delta_abs":       0.038,
+      "delta_pct":       0.099,
+      "unit": "%",
+      "higher_is_better": false,
+      "status": "bad",
+      "interpretation": "Tỷ lệ thoát tăng từ 38,5% → 42,3% (+3,8 điểm %). Đây là dấu hiệu cần chú ý: dù sessions tăng nhưng chất lượng trải nghiệm trên trang có thể đang giảm với nhóm người dùng mới.",
+      "possible_causes": [
+        "Lượng traffic mới tăng mạnh (new users +14,8%) — người dùng mới thường có bounce rate cao hơn người quay lại",
+        "Một số bài blog có traffic cao (/kien-thuc/seo-la-gi) đang có bounce rate 48% — người đọc xong không tiếp tục khám phá",
+        "Tốc độ tải trang trên mobile có thể chậm hơn do lượt truy cập tăng đột biến tuần 3 (W16)"
+      ],
+      "suggested_actions": [
+        "Audit tốc độ trang trên mobile — kiểm tra Core Web Vitals cho top 5 trang có bounce rate cao nhất",
+        "Thêm internal link có CTA rõ ràng vào các bài blog để dẫn người đọc sang /dich-vu-seo hoặc /bang-gia",
+        "Cải thiện cấu trúc bài viết /kien-thuc/seo-la-gi: thêm related posts, bảng nhanh, sidebar CTA"
+      ]
+    },
+
+    {
+      "id": "avg_session_duration",
+      "name": "Thời gian phiên trung bình (Avg Session Duration)",
+      "source": "GA4",
+      "value_current":  152,
+      "value_previous": 178,
+      "delta_abs":      -26,
+      "delta_pct":      -0.146,
+      "unit": "giây",
+      "higher_is_better": true,
+      "status": "bad",
+      "interpretation": "Thời gian phiên giảm từ 2 phút 58 giây → 2 phút 32 giây (−14,6%). Người dùng dành ít thời gian hơn trên trang, có thể do traffic mới tăng hoặc nội dung chưa đủ engaging để giữ chân.",
+      "possible_causes": [
+        "Tỷ trọng người dùng mới tăng (new users 58% → 58,2%) — đặc điểm hành vi: đọc nhanh và thoát",
+        "Nội dung blog được tối ưu cho featured snippet (đoạn ngắn, dễ đọc) — người dùng lấy thông tin nhanh rồi thoát",
+        "Tốc độ tải trang chậm ảnh hưởng đến người dùng không kiên nhẫn — cần kiểm tra LCP"
+      ],
+      "suggested_actions": [
+        "Thêm video embed, infographic vào top 3 bài blog để tăng thời gian tương tác",
+        "Kiểm tra và cải thiện tốc độ tải — mục tiêu LCP < 2,5 giây trên mobile",
+        "Theo dõi chỉ số này thêm 1 tháng trước khi kết luận — có thể là biến động mùa vụ"
+      ]
+    },
+
+    {
+      "id": "gsc_ctr",
+      "name": "Tỷ lệ nhấp trung bình — CTR (GSC)",
+      "source": "GSC",
+      "value_current":  0.0621,
+      "value_previous": 0.0624,
+      "delta_abs":      -0.0003,
+      "delta_pct":      -0.005,
+      "unit": "%",
+      "higher_is_better": true,
+      "status": "neutral",
+      "interpretation": "CTR gần như không đổi (6,21% vs 6,24%, −0,03 điểm %). Mức này khá tốt cho một website SEO agency đa ngôn ngữ. Tuy nhiên với avg position cải thiện (9,1 → 8,3), CTR đáng ra phải tăng — cần xem lại meta data.",
+      "possible_causes": [
+        "Nhiều keyword mới vào top 10-20 có CTR thấp tự nhiên (vị trí thấp) — kéo CTR trung bình xuống",
+        "SERP tháng 4 có nhiều kết quả Google Ads hơn do mùa Q2 — organic bị đẩy xuống"
+      ],
+      "suggested_actions": [
+        "Tập trung tối ưu title/meta cho 15 keyword có impression > 500 nhưng CTR < 3%",
+        "Thêm structured data (FAQ, HowTo) cho bài blog để chiếm thêm không gian SERP"
+      ]
+    },
+
+    {
+      "id": "avg_position",
+      "name": "Vị trí trung bình (Avg Position — GSC)",
+      "source": "GSC",
+      "value_current":  8.3,
+      "value_previous": 9.1,
+      "delta_abs":      -0.8,
+      "delta_pct":      -0.088,
+      "unit": "vị trí",
+      "higher_is_better": false,
+      "status": "good",
+      "interpretation": "Vị trí trung bình cải thiện từ 9,1 → 8,3 (thấp hơn = tốt hơn, −0,8 bậc). Keyword top 3 tăng từ 38 → 45, top 10 từ 195 → 218. Đây là tín hiệu nỗ lực tối ưu đang phát huy tác dụng.",
+      "possible_causes": [
+        "Backlink mới chất lượng cao (5 tên miền DR>60) tăng thẩm quyền, kéo thứ hạng lên",
+        "Tối ưu nội dung on-page trong T3 (15 trang meta, 8 structured data fixes) đã được Google ghi nhận",
+        "Các đối thủ top nhóm từ khóa 'dịch vụ seo' không cập nhật nội dung — tạo cơ hội vượt"
+      ],
+      "suggested_actions": [
+        "Tập trung đẩy 10 keyword đang ở vị trí 11-15 (borderline page 2) lên top 10 trong T5",
+        "Tiếp tục duy trì chiến lược nội dung + backlink để bảo vệ vị trí đã đạt được"
+      ]
+    }
+
+  ],
+
+  "overall_assessment": {
+    "score": 7,
+    "max_score": 10,
+    "label": "Tháng tốt — Tăng trưởng đa chiều",
+    "summary": "Tháng 4/2026 là tháng tăng trưởng tích cực với 5/9 chỉ số cải thiện đáng kể. Điểm nhấn là chuyển đổi (+22,4%) và DR (+3 điểm). Hai điểm cần theo dõi: bounce rate tăng và thời gian phiên giảm — có thể liên quan đến chất lượng trải nghiệm trang khi traffic tăng mạnh."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "client_name": "Viettel Store",
+  "domain": "viettelstore.vn",
+  "logo_path": "brand_profiles/logos/viettel_store.png",
+
+  "colors": {
+    "primary":    "#EE1C25",
+    "secondary":  "#333333",
+    "accent":     "#FF6B35",
+    "background": "#FFFFFF",
+    "text_dark":  "#212121",
+    "text_light": "#757575",
+    "success":    "#4CAF50",
+    "warning":    "#FFC107",
+    "danger":     "#EE1C25"
+  },
+
+  "fonts": {
+    "heading":  "Roboto",
+    "body":     "Open Sans",
+    "fallback": "Arial"
+  },
+
+  "style": {
+    "tone":          "professional",
+    "number_format": "vietnamese",
+    "currency":      "VND"
+  }
+}

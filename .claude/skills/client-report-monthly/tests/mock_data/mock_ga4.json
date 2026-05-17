@@ -1,0 +1,105 @@
+{
+  "period": {
+    "current":  {"label": "Tháng 4/2026", "start": "2026-04-01", "end": "2026-04-30"},
+    "previous": {"label": "Tháng 3/2026", "start": "2026-03-01", "end": "2026-03-31"},
+    "yoy":      {"label": "Tháng 4/2025", "start": "2025-04-01", "end": "2025-04-30"}
+  },
+
+  "summary": {
+    "current": {
+      "sessions":              12450,
+      "users":                  9870,
+      "new_users":              7240,
+      "organic_sessions":      10820,
+      "bounce_rate":            0.423,
+      "avg_session_duration_s": 152,
+      "pages_per_session":      2.8,
+      "conversions":             186,
+      "conversion_rate":        0.0149
+    },
+    "previous": {
+      "sessions":              10820,
+      "users":                  8650,
+      "new_users":              6310,
+      "organic_sessions":       9480,
+      "bounce_rate":            0.385,
+      "avg_session_duration_s": 178,
+      "pages_per_session":      3.1,
+      "conversions":             152,
+      "conversion_rate":        0.0140
+    },
+    "yoy": {
+      "sessions":               8240,
+      "users":                  6580,
+      "organic_sessions":       6920,
+      "bounce_rate":            0.448,
+      "conversions":             109,
+      "conversion_rate":        0.0132
+    }
+  },
+
+  "traffic_by_source": {
+    "current": [
+      {"source": "Tìm kiếm tự nhiên (Organic)", "sessions": 10820, "pct": 0.869, "conversions": 158},
+      {"source": "Mạng xã hội (Social)",         "sessions":   820, "pct": 0.066, "conversions":  12},
+      {"source": "Trực tiếp (Direct)",            "sessions":   540, "pct": 0.043, "conversions":  10},
+      {"source": "Giới thiệu (Referral)",         "sessions":   185, "pct": 0.015, "conversions":   5},
+      {"source": "Email",                          "sessions":    85, "pct": 0.007, "conversions":   1}
+    ],
+    "previous": [
+      {"source": "Tìm kiếm tự nhiên (Organic)", "sessions":  9480, "pct": 0.876, "conversions": 132},
+      {"source": "Mạng xã hội (Social)",         "sessions":   680, "pct": 0.063, "conversions":   9},
+      {"source": "Trực tiếp (Direct)",            "sessions":   430, "pct": 0.040, "conversions":   7},
+      {"source": "Giới thiệu (Referral)",         "sessions":   155, "pct": 0.014, "conversions":   4},
+      {"source": "Email",                          "sessions":    75, "pct": 0.007, "conversions":   0}
+    ]
+  },
+
+  "branded_vs_nonbranded": {
+    "current":  {"branded_sessions": 2180, "nonbranded_sessions": 8640, "branded_pct": 0.202},
+    "previous": {"branded_sessions": 2050, "nonbranded_sessions": 7430, "branded_pct": 0.216}
+  },
+
+  "top_landing_pages": [
+    {"page": "/dich-vu-seo",              "sessions": 2840, "users": 2340, "conversions": 42,
+     "bounce_rate": 0.310, "avg_duration_s": 198, "prev_sessions": 2450, "prev_conversions": 35},
+    {"page": "/kien-thuc/seo-la-gi",      "sessions": 1950, "users": 1820, "conversions":  8,
+     "bounce_rate": 0.482, "avg_duration_s": 210, "prev_sessions": 2120, "prev_conversions": 10},
+    {"page": "/khoa-hoc-seo",             "sessions": 1680, "users": 1560, "conversions": 28,
+     "bounce_rate": 0.352, "avg_duration_s": 175, "prev_sessions": 1490, "prev_conversions": 22},
+    {"page": "/bang-gia",                 "sessions": 1240, "users": 1150, "conversions": 35,
+     "bounce_rate": 0.284, "avg_duration_s": 145, "prev_sessions": 1080, "prev_conversions": 28},
+    {"page": "/ve-chung-toi",             "sessions":  890, "users":  830, "conversions": 12,
+     "bounce_rate": 0.410, "avg_duration_s": 120, "prev_sessions": 1020, "prev_conversions": 15},
+    {"page": "/kien-thuc/backlink",       "sessions":  780, "users":  720, "conversions":  3,
+     "bounce_rate": 0.520, "avg_duration_s": 195, "prev_sessions":  710, "prev_conversions":  2},
+    {"page": "/giai-phap-seo",            "sessions":  650, "users":  610, "conversions": 18,
+     "bounce_rate": 0.360, "avg_duration_s": 162, "prev_sessions":  720, "prev_conversions": 20},
+    {"page": "/kien-thuc/content-seo",   "sessions":  520, "users":  490, "conversions":  5,
+     "bounce_rate": 0.495, "avg_duration_s": 188, "prev_sessions":  480, "prev_conversions":  4},
+    {"page": "/dich-vu-seo/local",        "sessions":  480, "users":  450, "conversions": 14,
+     "bounce_rate": 0.330, "avg_duration_s": 155, "prev_sessions":  385, "prev_conversions":  9},
+    {"page": "/kien-thuc/technical-seo",  "sessions":  420, "users":  395, "conversions":  2,
+     "bounce_rate": 0.540, "avg_duration_s": 220, "prev_sessions":  360, "prev_conversions":  2}
+  ],
+
+  "monthly_trend": [
+    {"month": "2026-01", "sessions":  9200, "organic": 7980, "conversions": 118, "bounce_rate": 0.412},
+    {"month": "2026-02", "sessions":  9850, "organic": 8540, "conversions": 132, "bounce_rate": 0.401},
+    {"month": "2026-03", "sessions": 10820, "organic": 9480, "conversions": 152, "bounce_rate": 0.385},
+    {"month": "2026-04", "sessions": 12450, "organic":10820, "conversions": 186, "bounce_rate": 0.423}
+  ],
+
+  "weekly_trend": [
+    {"week": "W14", "sessions": 2890, "organic": 2510, "conversions": 42},
+    {"week": "W15", "sessions": 3120, "organic": 2720, "conversions": 48},
+    {"week": "W16", "sessions": 3240, "organic": 2820, "conversions": 52},
+    {"week": "W17", "sessions": 3200, "organic": 2770, "conversions": 44}
+  ],
+
+  "goals": [
+    {"name": "Liên hệ / Form SEO",   "completions": 98, "prev_completions": 80,  "conversion_rate": 0.0079},
+    {"name": "Đăng ký khóa học",     "completions": 52, "prev_completions": 42,  "conversion_rate": 0.0042},
+    {"name": "Xem trang Bảng giá",   "completions": 36, "prev_completions": 30,  "conversion_rate": 0.0029}
+  ]
+}

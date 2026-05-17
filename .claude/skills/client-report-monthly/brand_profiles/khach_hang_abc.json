@@ -1,0 +1,29 @@
+{
+  "client_name": "Khach Hang ABC",
+  "domain": "abc.com",
+  "logo_path": "brand_profiles/logos/khach_hang_abc.png",
+
+  "colors": {
+    "primary":    "#2C3E50",
+    "secondary":  "#3498DB",
+    "accent":     "#E74C3C",
+    "background": "#FFFFFF",
+    "text_dark":  "#2C3E50",
+    "text_light": "#7F8C8D",
+    "success":    "#27AE60",
+    "warning":    "#F39C12",
+    "danger":     "#E74C3C"
+  },
+
+  "fonts": {
+    "heading":  "Roboto",
+    "body":     "Lato",
+    "fallback": "Arial"
+  },
+
+  "style": {
+    "tone":          "professional",
+    "number_format": "vietnamese",
+    "currency":      "VND"
+  }
+}

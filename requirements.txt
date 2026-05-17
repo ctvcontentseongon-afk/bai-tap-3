@@ -1,0 +1,20 @@
+# Google APIs
+gspread>=5.12.0
+google-auth>=2.23.0
+google-api-python-client>=2.100.0
+google-auth-oauthlib>=1.1.0
+google-auth-httplib2>=0.1.0
+
+# Data processing
+pandas>=2.1.0
+openpyxl>=3.1.2
+
+# PowerPoint generation
+python-pptx>=0.6.23
+
+# Templating
+jinja2>=3.1.2
+
+# Environment & HTTP
+python-dotenv>=1.0.0
+requests>=2.31.0

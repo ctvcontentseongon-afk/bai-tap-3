@@ -1,0 +1,72 @@
+{
+  "period": {
+    "current":  {"label": "Tháng 4/2026"},
+    "previous": {"label": "Tháng 3/2026"}
+  },
+
+  "domain_rating": {
+    "current":  42,
+    "previous": 39,
+    "history": [
+      {"month": "2026-01", "dr": 35},
+      {"month": "2026-02", "dr": 37},
+      {"month": "2026-03", "dr": 39},
+      {"month": "2026-04", "dr": 42}
+    ]
+  },
+
+  "referring_domains": {
+    "current":        284,
+    "previous":       251,
+    "new_this_month":  38,
+    "lost_this_month":  5,
+    "net_change":      33
+  },
+
+  "backlinks": {
+    "total":            1840,
+    "total_previous":   1707,
+    "new_this_month":    156,
+    "lost_this_month":    23,
+    "dofollow_pct":     0.74,
+    "nofollow_pct":     0.26
+  },
+
+  "new_notable_backlinks": [
+    {"source": "vnexpress.net",           "dr": 78, "target": "/dich-vu-seo",           "type": "dofollow", "anchor": "dịch vụ SEO chuyên nghiệp"},
+    {"source": "cafebiz.vn",              "dr": 72, "target": "/kien-thuc/seo-la-gi",   "type": "dofollow", "anchor": "SEO là gì"},
+    {"source": "brandsvietnam.com",       "dr": 65, "target": "/giai-phap-seo",         "type": "dofollow", "anchor": "giải pháp SEO toàn diện"},
+    {"source": "marketingai.admicro.vn",  "dr": 58, "target": "/dich-vu-seo",           "type": "nofollow", "anchor": "công ty SEO"},
+    {"source": "seo.com.vn",              "dr": 45, "target": "/khoa-hoc-seo",          "type": "dofollow", "anchor": "khóa học SEO"},
+    {"source": "webmaster.vn",            "dr": 42, "target": "/kien-thuc/backlink",    "type": "dofollow", "anchor": "backlink là gì"},
+    {"source": "digitalmarketing.vn",     "dr": 38, "target": "/dich-vu-seo/local",     "type": "dofollow", "anchor": "SEO địa phương"},
+    {"source": "seotools.vn",             "dr": 35, "target": "/kien-thuc/technical-seo","type":"nofollow", "anchor": "technical SEO"}
+  ],
+
+  "lost_backlinks": [
+    {"source": "forum.seo.vn",   "dr": 28, "target": "/dich-vu-seo",         "type": "dofollow", "reason": "Trang nguồn bị xóa"},
+    {"source": "blog.mmo.vn",    "dr": 22, "target": "/kien-thuc/seo-la-gi", "type": "nofollow", "reason": "Link bị thay thế bằng URL khác"},
+    {"source": "tintucseo.net",  "dr": 18, "target": "/giai-phap-seo",       "type": "dofollow", "reason": "Tên miền không gia hạn"}
+  ],
+
+  "anchor_text_distribution": [
+    {"anchor": "Branded (SEONGON, seongon.com)", "pct": 0.32},
+    {"anchor": "Từ khóa chính (dịch vụ SEO...)", "pct": 0.28},
+    {"anchor": "Naked URL (https://seongon...)",  "pct": 0.18},
+    {"anchor": "Generic (click here, tại đây...)", "pct": 0.12},
+    {"anchor": "Từ khóa phụ (agency SEO...)",     "pct": 0.10}
+  ],
+
+  "organic_keywords": {
+    "current":  {"top_3": 45, "top_10": 218, "top_100": 1240},
+    "previous": {"top_3": 38, "top_10": 195, "top_100": 1108}
+  },
+
+  "top_competitor_comparison": [
+    {"competitor": "seo.net.vn",       "dr": 51, "referring_domains": 380, "keywords_top10": 312},
+    {"competitor": "seoviet.vn",       "dr": 48, "referring_domains": 342, "keywords_top10": 285},
+    {"competitor": "searchengine.vn",  "dr": 45, "referring_domains": 298, "keywords_top10": 241},
+    {"competitor": "abc.com (client)", "dr": 42, "referring_domains": 284, "keywords_top10": 218},
+    {"competitor": "seoagency.vn",     "dr": 38, "referring_domains": 224, "keywords_top10": 178}
+  ]
+}
