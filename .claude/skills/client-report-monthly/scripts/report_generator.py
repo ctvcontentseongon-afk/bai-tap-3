@@ -1335,11 +1335,29 @@ def parse_args():
     p.add_argument("--output-dir",     dest="output_dir",     help="Thư mục output")
     p.add_argument("--ga4-property",   dest="ga4_property",   help="GA4 Property ID (không có 'properties/')")
     p.add_argument("--actions-file",   dest="actions_file",   help="Path tới actions.json (tùy chọn, dùng khi live API)")
+    p.add_argument("--check-creds",    dest="check_creds",    action="store_true",
+                   help="Kiểm tra credentials mà không tạo báo cáo")
     return p.parse_args()
 
 
 def main():
     args = parse_args()
+
+    # ── Pre-flight credential check ──────────────────────────────────────────
+    if getattr(args, "check_creds", False):
+        from data_fetcher import DataFetcher
+        print(f"\n{'='*60}")
+        print(f"  Kiểm tra credentials — SEONGON Report Generator")
+        print(f"{'='*60}\n")
+        issues = DataFetcher(use_mock=False).pre_flight_check()
+        if not issues:
+            print("  ✅ Tất cả credentials OK — sẵn sàng chạy live API!\n")
+        else:
+            for i, issue in enumerate(issues, 1):
+                print(f"  {'❌' if 'Không tìm thấy' in issue or 'AHREFS' in issue or 'GA4_PROPERTY' in issue else '⚠️ '} [{i}] {issue}\n")
+            print(f"  {'❌ ' + str(sum(1 for i in issues if 'Không' in i or 'AHREFS' in i)) + ' lỗi cần fix trước khi dùng live API.' if any('Không' in i or 'AHREFS' in i for i in issues) else '⚠️  Tất cả credentials OK nhưng có cảnh báo.'}\n")
+        return
+
     print(f"\n{'='*60}")
     print(f"  SEONGON Monthly SEO Report Generator")
     print(f"{'='*60}")

@@ -117,13 +117,17 @@ class GSCFetcher:
         )
         return resp.get("rows", [])
 
-    def get_full_report(self, domain: str, year_month: str) -> dict:
-        """Trả về dict đầy đủ — cùng structure với mock_gsc.json."""
+    def get_full_report(self, domain: str, year_month: str,
+                        site_url: str | None = None) -> dict:
+        """Trả về dict đầy đủ — cùng structure với mock_gsc.json.
+
+        site_url ưu tiên: tham số > GSC_SITE_URL env var > auto-convert từ domain.
+        """
         if self.use_mock:
             with open(TESTS_DIR / "mock_gsc.json", encoding="utf-8") as f:
                 return json.load(f)
 
-        site    = _site_url(domain)
+        site = site_url or os.getenv("GSC_SITE_URL") or _site_url(domain)
         prev_ym = _prev_month(year_month)
         c_start, c_end = _month_range(year_month)
         p_start, p_end = _month_range(prev_ym)

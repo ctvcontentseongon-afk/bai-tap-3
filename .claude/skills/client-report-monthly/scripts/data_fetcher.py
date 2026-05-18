@@ -18,8 +18,15 @@ Usage (mock):
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import Optional
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 SKILL_DIR = Path(__file__).resolve().parent.parent
 MOCK_DIR  = SKILL_DIR / "tests" / "mock_data"
@@ -156,6 +163,63 @@ class DataFetcher:
     def __init__(self, use_mock: bool = False) -> None:
         self.use_mock = use_mock
 
+    # ── Pre-flight credential check ───────────────────────────────────────────
+
+    def pre_flight_check(self) -> list[str]:
+        """Kiểm tra credentials trước khi chạy. Trả về list lỗi (rỗng = OK)."""
+        issues: list[str] = []
+
+        # GSC client secrets
+        gsc_secrets = Path(os.getenv("GSC_CLIENT_SECRETS_PATH",
+                                     "credentials/gsc_client_secrets.json"))
+        if not gsc_secrets.exists():
+            issues.append(
+                f"[GSC] Không tìm thấy {gsc_secrets}\n"
+                "  → Google Cloud Console → APIs & Services → Credentials\n"
+                "  → Create OAuth 2.0 Client ID (Desktop) → Download JSON\n"
+                f"  → Lưu vào {gsc_secrets}"
+            )
+
+        # GA4 service account
+        ga4_sa = Path(os.getenv("GA4_SERVICE_ACCOUNT_PATH",
+                                "credentials/service_account.json"))
+        if not ga4_sa.exists():
+            issues.append(
+                f"[GA4] Không tìm thấy {ga4_sa}\n"
+                "  → Google Cloud Console → IAM → Service Accounts → Create\n"
+                "  → Enable Analytics Data API → Download JSON key\n"
+                f"  → Lưu vào {ga4_sa}"
+            )
+
+        # Ahrefs API key
+        if not os.getenv("AHREFS_API_KEY"):
+            issues.append(
+                "[Ahrefs] AHREFS_API_KEY chưa set\n"
+                "  → ahrefs.com → Settings → API → Copy key\n"
+                "  → Thêm AHREFS_API_KEY=your_key vào .env"
+            )
+
+        # GA4 property ID
+        if not os.getenv("GA4_PROPERTY_ID"):
+            issues.append(
+                "[GA4] GA4_PROPERTY_ID chưa set trong .env\n"
+                "  → GA4 Admin → Property Settings → Property ID (dạng số)\n"
+                "  → Thêm GA4_PROPERTY_ID=123456789 vào .env\n"
+                "  (hoặc truyền qua --ga4-property khi chạy script)"
+            )
+
+        # GSC site URL
+        if not os.getenv("GSC_SITE_URL"):
+            issues.append(
+                "[GSC] GSC_SITE_URL chưa set trong .env (không bắt buộc nhưng khuyến nghị)\n"
+                "  → GSC → Chọn property → copy URL\n"
+                "  → sc-domain:yourdomain.com (Domain property)\n"
+                "  → hoặc https://yourdomain.com/ (URL-prefix property)\n"
+                "  → Thêm GSC_SITE_URL=sc-domain:yourdomain.com vào .env"
+            )
+
+        return issues
+
     def fetch_all(
         self,
         domain:       str,
@@ -167,15 +231,37 @@ class DataFetcher:
         """
         Trả về dict với keys: gsc, ga4, ahrefs, comparison, actions.
         Khi use_mock=True: đọc từ tests/mock_data/*.json.
+        Khi live: tự động kiểm tra credentials, raise rõ ràng nếu thiếu.
         """
         from fetch_gsc    import GSCFetcher
         from fetch_ga4    import GA4Fetcher
         from fetch_ahrefs import AhrefsFetcher
 
+        if not self.use_mock:
+            issues = self.pre_flight_check()
+            # Chỉ block nếu thiếu file credentials hoặc Ahrefs key — không block nếu chỉ thiếu GSC_SITE_URL
+            hard_issues = [i for i in issues if "[GSC] Không tìm thấy" in i
+                           or "[GA4] Không tìm thấy" in i
+                           or "[Ahrefs]" in i
+                           or "[GA4] GA4_PROPERTY_ID" in i]
+            if hard_issues:
+                raise RuntimeError(
+                    "❌ Thiếu credentials — không thể chạy live API:\n\n"
+                    + "\n\n".join(hard_issues)
+                    + "\n\nChạy lại sau khi setup, hoặc dùng --mock để test."
+                )
+            # Warn-only issues (GSC_SITE_URL)
+            warn_issues = [i for i in issues if i not in hard_issues]
+            for w in warn_issues:
+                print(f"   ⚠️  {w.splitlines()[0]}")
+
         # ── GSC ───────────────────────────────────────────────────────────────
         gsc_fetcher = GSCFetcher(use_mock=self.use_mock)
         gsc_fetcher.authenticate()
-        gsc_data = gsc_fetcher.get_full_report(domain=domain, year_month=year_month)
+        _gsc_site = gsc_site_url or os.getenv("GSC_SITE_URL")
+        gsc_data = gsc_fetcher.get_full_report(
+            domain=domain, year_month=year_month, site_url=_gsc_site
+        )
 
         # ── GA4 ───────────────────────────────────────────────────────────────
         ga4_fetcher = GA4Fetcher(use_mock=self.use_mock)
