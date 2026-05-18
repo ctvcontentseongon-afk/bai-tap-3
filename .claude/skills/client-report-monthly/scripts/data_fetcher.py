@@ -106,8 +106,8 @@ def _build_comparison(gsc: dict, ga4: dict, ahrefs: dict, year_month: str) -> di
         _metric("sessions",          "Phiên truy cập (Sessions)",               "GA4",    sessions_cur,        sessions_prev,       "phiên",     True),
         _metric("gsc_clicks",        "Lượt nhấp GSC (Clicks)",                  "GSC",    gsc_cur["clicks"],   gsc_prev["clicks"],  "lượt nhấp", True),
         _metric("conversions",       "Chuyển đổi (Conversions)",                "GA4",    conv_cur,            conv_prev,           "chuyển đổi",True),
-        _metric("domain_rating",     "Thẩm quyền tên miền — DR (Domain Rating)","Ahrefs", ahr_cur,             ahr_prev,            "điểm",      True),
-        _metric("referring_domains", "Tên miền liên kết (Referring Domains)",   "Ahrefs", rd_cur,              rd_prev,             "tên miền",  True),
+        _metric("domain_rating",     "Authority Score (AS) — Semrush",          "Semrush",ahr_cur,             ahr_prev,            "điểm",      True),
+        _metric("referring_domains", "Tên miền liên kết (Referring Domains)",   "Semrush",rd_cur,              rd_prev,             "tên miền",  True),
         _metric("bounce_rate",       "Tỷ lệ thoát (Bounce Rate)",               "GA4",    br_cur,              br_prev,             "%",         False),
         _metric("avg_session_duration","Thời gian phiên trung bình",            "GA4",    dur_cur,             dur_prev,            "giây",      True),
         _metric("gsc_ctr",           "Tỷ lệ nhấp trung bình — CTR (GSC)",       "GSC",    gsc_cur["ctr"],      gsc_prev["ctr"],     "%",         True),
@@ -191,12 +191,12 @@ class DataFetcher:
                 f"  → Lưu vào {ga4_sa}"
             )
 
-        # Ahrefs API key
-        if not os.getenv("AHREFS_API_KEY"):
+        # Semrush API key
+        if not os.getenv("SEMRUSH_API_KEY"):
             issues.append(
-                "[Ahrefs] AHREFS_API_KEY chưa set\n"
-                "  → ahrefs.com → Settings → API → Copy key\n"
-                "  → Thêm AHREFS_API_KEY=your_key vào .env"
+                "[Semrush] SEMRUSH_API_KEY chưa set\n"
+                "  → semrush.com → Account Settings → API → Copy key\n"
+                "  → Thêm SEMRUSH_API_KEY=your_key vào .env"
             )
 
         # GA4 property ID
@@ -233,16 +233,16 @@ class DataFetcher:
         Khi use_mock=True: đọc từ tests/mock_data/*.json.
         Khi live: tự động kiểm tra credentials, raise rõ ràng nếu thiếu.
         """
-        from fetch_gsc    import GSCFetcher
-        from fetch_ga4    import GA4Fetcher
-        from fetch_ahrefs import AhrefsFetcher
+        from fetch_gsc     import GSCFetcher
+        from fetch_ga4     import GA4Fetcher
+        from fetch_semrush import SemrushFetcher
 
         if not self.use_mock:
             issues = self.pre_flight_check()
             # Chỉ block nếu thiếu file credentials hoặc Ahrefs key — không block nếu chỉ thiếu GSC_SITE_URL
             hard_issues = [i for i in issues if "[GSC] Không tìm thấy" in i
                            or "[GA4] Không tìm thấy" in i
-                           or "[Ahrefs]" in i
+                           or "[Semrush]" in i
                            or "[GA4] GA4_PROPERTY_ID" in i]
             if hard_issues:
                 raise RuntimeError(
@@ -268,8 +268,8 @@ class DataFetcher:
         ga4_fetcher.authenticate(property_id=ga4_property)
         ga4_data = ga4_fetcher.get_full_report(property_id=ga4_property, year_month=year_month)
 
-        # ── Ahrefs ────────────────────────────────────────────────────────────
-        ahr_fetcher = AhrefsFetcher(use_mock=self.use_mock)
+        # ── Semrush ───────────────────────────────────────────────────────────
+        ahr_fetcher = SemrushFetcher(use_mock=self.use_mock)
         ahr_fetcher.authenticate()
         ahr_data = ahr_fetcher.get_full_report(domain=domain, year_month=year_month)
 

@@ -1055,9 +1055,9 @@ def create_slide_9_gsc(prs, brand, gsc_data, comparison_data):
 
 
 def create_slide_10_backlinks(prs, brand, ahrefs_data, comparison_data):
-    """Slide 10: Phân tích Backlinks & Domain Rating — layout 4-zone 2×2."""
+    """Slide 10: Phân tích Backlinks & Authority Score — layout 4-zone 2×2."""
     slide = _blank_slide(prs)
-    _slide_base(slide, brand, "Phân tích Backlinks & Domain Rating")
+    _slide_base(slide, brand, "Phân tích Backlinks & Authority Score")
 
     primary    = get_color(brand, "primary")
     success    = get_color(brand, "success")
@@ -1078,7 +1078,7 @@ def create_slide_10_backlinks(prs, brand, ahrefs_data, comparison_data):
 
     # --- ZONE 1 (top-left): 2×2 mini KPI ---
     kpis_z1 = [
-        ("Domain Rating (DR)", str(dr_cur),
+        ("Authority Score (AS)", str(dr_cur),
          *_calc_delta(dr_cur, dr_prev, brand, True, pct=False)),
         ("Referring Domains",  format_vn_number(rd_cur),
          *_calc_delta(rd_cur, rd_prev, brand, True)),
@@ -1088,7 +1088,7 @@ def create_slide_10_backlinks(prs, brand, ahrefs_data, comparison_data):
          f"▲ +{rd_new - rd_lost} ròng", get_color(brand, "success")),
     ]
     _mini_kpi_zone1(slide, MARGIN, _ZTY, _ZLW, _ZTH,
-                    "🔗", "Chỉ số Backlink & Authority", kpis_z1, brand)
+                    "🔗", "Chỉ số Backlink & Authority Score", kpis_z1, brand)
 
     # --- ZONE 2 (top-right): Backlinks nổi bật ---
     _add_rect(slide, _ZRX, _ZTY, _ZLW, _ZTH, "#F8F9FA")
@@ -1100,7 +1100,7 @@ def create_slide_10_backlinks(prs, brand, ahrefs_data, comparison_data):
               font_name=font_h, size=10, bold=True, color_hex=success)
     cy += Inches(0.26)
     for bl in ahrefs_data.get("new_notable_backlinks", [])[:3]:
-        row_txt = f"  ↑  {bl['source']}  (DR {bl['dr']})  →  {bl['target']}"
+        row_txt = f"  ↑  {bl['source']}  (AS {bl['dr']})  →  {bl['target']}"
         _add_text(slide, _ZRX + Inches(0.12), cy, _ZLW - Inches(0.2), Inches(0.28),
                   row_txt, font_name=font_b, size=10, color_hex=text_dark)
         cy += Inches(0.28)
@@ -1111,22 +1111,41 @@ def create_slide_10_backlinks(prs, brand, ahrefs_data, comparison_data):
               font_name=font_h, size=10, bold=True, color_hex=warning)
     cy += Inches(0.26)
     for bl in ahrefs_data.get("lost_backlinks", [])[:2]:
-        row_txt = f"  ↓  {bl['source']}  (DR {bl['dr']})  —  {bl['reason']}"
+        row_txt = f"  ↓  {bl['source']}  (AS {bl['dr']})  —  {bl.get('reason', '')}"
         _add_text(slide, _ZRX + Inches(0.12), cy, _ZLW - Inches(0.2), Inches(0.28),
                   row_txt, font_name=font_b, size=10, color_hex=text_light)
         cy += Inches(0.28)
 
+    # ── Dữ liệu bổ sung cho zones ─────────────────────────────────────────────
+    bl_new_cnt  = ahrefs_data["backlinks"]["new_this_month"]
+    bl_lost_cnt = ahrefs_data["backlinks"]["lost_this_month"]
+    rd_net      = rd_new - rd_lost
+    dofollow_pct_val = ahrefs_data["backlinks"]["dofollow_pct"]
+    as_delta    = dr_cur - dr_prev
+
     # --- ZONE 3 (bottom-left ✅): Điểm tốt ---
     _add_rect(slide, MARGIN, _ZBY, _ZLW, _ZBH, "#EFF8F1")
     _zone_hdr(slide, MARGIN, _ZBY, _ZLW, "✅", "Điểm tốt — Backlinks", success, brand)
-    good_bullets = [
-        f"DR tăng {dr_prev} → {dr_cur} (+3 điểm) — mức tăng DR tốt nhất trong 12 tháng",
-        f"Referring domains tăng ròng +33: {rd_prev} → {rd_cur} (38 mới − 5 mất)",
-        "5 backlink từ tên miền DR>60: vnexpress (78), cafebiz (72), brandsvietnam (65)",
-        "74% dofollow — profile backlink tự nhiên, Google đánh giá tốt",
-    ]
+
+    good_bullets: list[str] = []
+    if as_delta > 0:
+        good_bullets.append(
+            f"Authority Score tăng {dr_prev} → {dr_cur} (+{as_delta} điểm)"
+        )
+    if rd_net > 0:
+        good_bullets.append(
+            f"Referring domains tăng ròng +{rd_net}: {rd_prev} → {rd_cur} "
+            f"({rd_new} mới − {rd_lost} mất)"
+        )
+    if bl_new_cnt > 0:
+        good_bullets.append(
+            f"{bl_new_cnt} backlink mới — {int(dofollow_pct_val * 100)}% dofollow"
+        )
+    if not good_bullets:
+        good_bullets.append("Chưa có thay đổi đáng kể trong tháng này")
+
     by = _ZBY + Inches(0.5)
-    for b in good_bullets:
+    for b in good_bullets[:4]:
         _add_text(slide, MARGIN + Inches(0.15), by, _ZLW - Inches(0.22), Inches(0.5),
                   f"•  {b}", font_name=font_b, size=10, color_hex=text_dark, wrap=True)
         by += Inches(0.5)
@@ -1134,14 +1153,25 @@ def create_slide_10_backlinks(prs, brand, ahrefs_data, comparison_data):
     # --- ZONE 4 (bottom-right ⚠️): Cần chú ý ---
     _add_rect(slide, _ZRX, _ZBY, _ZLW, _ZBH, "#FFFBF0")
     _zone_hdr(slide, _ZRX, _ZBY, _ZLW, "⚠️", "Cần chú ý — Backlinks", warning, brand)
-    bad_bullets = [
-        "5 referring domains mất — kiểm tra lý do, liên hệ webmaster nếu do lỗi kỹ thuật",
-        "Đối thủ seo.net.vn (DR 51, 380 RDs) vẫn cách xa — cần duy trì momentum T5",
-        "Ưu tiên T5: outreach 2-3 trang báo DR>50, tạo linkable asset mới",
-        "Mục tiêu dài hạn: DR 50+ cuối năm 2026 để cạnh tranh top 3 ngành SEO",
-    ]
+
+    bad_bullets: list[str] = []
+    if rd_lost > 0:
+        bad_bullets.append(
+            f"{rd_lost} referring domains mất — kiểm tra lý do, liên hệ webmaster nếu do lỗi kỹ thuật"
+        )
+    if bl_lost_cnt > 0:
+        bad_bullets.append(
+            f"{bl_lost_cnt} backlink mất trong tháng — xem tab Backlinks mất để biết chi tiết"
+        )
+    if as_delta <= 0:
+        bad_bullets.append(
+            f"Authority Score không cải thiện ({dr_prev} → {dr_cur}) — cần đẩy mạnh link building"
+        )
+    if not bad_bullets:
+        bad_bullets.append("Không có vấn đề đáng lo ngại trong tháng này")
+
     by2 = _ZBY + Inches(0.5)
-    for b in bad_bullets:
+    for b in bad_bullets[:4]:
         _add_text(slide, _ZRX + Inches(0.15), by2, _ZLW - Inches(0.22), Inches(0.5),
                   f"•  {b}", font_name=font_b, size=10, color_hex=text_dark, wrap=True)
         by2 += Inches(0.5)
@@ -1149,7 +1179,9 @@ def create_slide_10_backlinks(prs, brand, ahrefs_data, comparison_data):
     metrics_by_id = {m["id"]: m for m in comparison_data.get("metrics", [])}
     narr_raw  = metrics_by_id.get("domain_rating", {}).get(
         "interpretation",
-        f"DR tăng {dr_prev} → {dr_cur} (+3 điểm). 33 referring domains mới ròng — momentum T4 rất tốt.")
+        f"Authority Score {dr_prev} → {dr_cur}. "
+        f"Referring domains: {rd_prev} → {rd_cur} (+{rd_new} mới, −{rd_lost} mất)."
+    )
     _narr(slide, brand, narr_raw[:135])
     _footer(slide, brand)
 
@@ -1289,7 +1321,7 @@ def build_presentation(args) -> Path:
     print("   📄 Slide  9: Phân tích GSC...")
     create_slide_9_gsc(prs, brand, data["gsc"], data["comparison"])
 
-    print("   📄 Slide 10: Backlinks & Domain Rating...")
+    print("   📄 Slide 10: Backlinks & Authority Score (Semrush)...")
     create_slide_10_backlinks(prs, brand, data["ahrefs"], data["comparison"])
 
     print("   📄 Slide 11: [Divider] III — Kế hoạch hành động...")

@@ -70,7 +70,7 @@ def check_packages():
 def check_env():
     hdr("3. Biến môi trường (.env)")
     vars_ = {
-        "AHREFS_API_KEY":          ("required", "ahrefs.com → Settings → API"),
+        "SEMRUSH_API_KEY":          ("required", "semrush.com → Account Settings → API"),
         "GA4_PROPERTY_ID":         ("required", "GA4 Admin → Property Settings → Property ID"),
         "GA4_SERVICE_ACCOUNT_PATH":("optional", "Path tới service_account.json"),
         "GSC_CLIENT_SECRETS_PATH": ("optional", "Path tới gsc_client_secrets.json"),
