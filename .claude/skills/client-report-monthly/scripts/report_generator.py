@@ -1059,6 +1059,28 @@ def create_slide_10_backlinks(prs, brand, ahrefs_data, comparison_data):
     slide = _blank_slide(prs)
     _slide_base(slide, brand, "Phân tích Backlinks & Authority Score")
 
+    # ── Graceful degradation khi Semrush chưa cấu hình ──────────────────────
+    if ahrefs_data.get("_not_configured"):
+        primary   = get_color(brand, "primary")
+        text_dark = get_color(brand, "text_dark")
+        font_h    = get_font(brand, "heading")
+        font_b    = get_font(brand, "body")
+        cx = MARGIN + Inches(1.5)
+        cy = Inches(2.2)
+        _add_rect(slide, cx, cy, Inches(10.333), Inches(3.5), "#F8F9FA")
+        _add_text(slide, cx + Inches(0.3), cy + Inches(0.4), Inches(9.7), Inches(0.5),
+                  "📊  Module Backlinks chưa được kích hoạt",
+                  font_name=font_h, size=20, bold=True, color_hex=primary)
+        _add_text(slide, cx + Inches(0.3), cy + Inches(1.1), Inches(9.7), Inches(2.0),
+                  "Để hiển thị dữ liệu Authority Score, Referring Domains và Backlinks,\n"
+                  "vui lòng cấu hình Semrush API key:\n\n"
+                  "1. Đăng nhập semrush.com → Account Settings → API\n"
+                  "2. Copy API key → thêm SEMRUSH_API_KEY=... vào file .env\n"
+                  "3. Chạy lại report",
+                  font_name=font_b, size=13, color_hex=text_dark, wrap=True)
+        _footer(slide, brand)
+        return
+
     primary    = get_color(brand, "primary")
     success    = get_color(brand, "success")
     warning    = get_color(brand, "warning")

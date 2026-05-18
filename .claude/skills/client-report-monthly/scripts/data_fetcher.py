@@ -106,13 +106,17 @@ def _build_comparison(gsc: dict, ga4: dict, ahrefs: dict, year_month: str) -> di
         _metric("sessions",          "Phiên truy cập (Sessions)",               "GA4",    sessions_cur,        sessions_prev,       "phiên",     True),
         _metric("gsc_clicks",        "Lượt nhấp GSC (Clicks)",                  "GSC",    gsc_cur["clicks"],   gsc_prev["clicks"],  "lượt nhấp", True),
         _metric("conversions",       "Chuyển đổi (Conversions)",                "GA4",    conv_cur,            conv_prev,           "chuyển đổi",True),
-        _metric("domain_rating",     "Authority Score (AS) — Semrush",          "Semrush",ahr_cur,             ahr_prev,            "điểm",      True),
-        _metric("referring_domains", "Tên miền liên kết (Referring Domains)",   "Semrush",rd_cur,              rd_prev,             "tên miền",  True),
         _metric("bounce_rate",       "Tỷ lệ thoát (Bounce Rate)",               "GA4",    br_cur,              br_prev,             "%",         False),
         _metric("avg_session_duration","Thời gian phiên trung bình",            "GA4",    dur_cur,             dur_prev,            "giây",      True),
         _metric("gsc_ctr",           "Tỷ lệ nhấp trung bình — CTR (GSC)",       "GSC",    gsc_cur["ctr"],      gsc_prev["ctr"],     "%",         True),
         _metric("avg_position",      "Vị trí trung bình (Avg Position — GSC)",  "GSC",    gsc_cur["avg_position"], gsc_prev["avg_position"], "vị trí", False),
     ]
+    # Thêm backlinks metrics chỉ khi Semrush được cấu hình
+    if not ahrefs.get("_not_configured"):
+        metrics.insert(3, _metric("domain_rating",     "Authority Score (AS) — Semrush",
+                                  "Semrush", ahr_cur, ahr_prev, "điểm",    True))
+        metrics.insert(4, _metric("referring_domains", "Tên miền liên kết (Referring Domains)",
+                                  "Semrush", rd_cur,  rd_prev,  "tên miền", True))
 
     good_count = sum(1 for m_ in metrics if m_["status"] == "good")
     score = round(good_count / len(metrics) * 10)
@@ -130,6 +134,27 @@ def _build_comparison(gsc: dict, ga4: dict, ahrefs: dict, year_month: str) -> di
             "label":     "Tháng tốt" if score >= 6 else ("Tháng trung bình" if score >= 4 else "Tháng khó"),
             "summary":   f"{period_cur}: {good_count}/{len(metrics)} chỉ số cải thiện.",
         },
+    }
+
+
+def _null_backlinks_data(year_month: str) -> dict:
+    """Trả về khi Semrush API không được cấu hình — slide 10 hiển thị gracefully."""
+    y, m = int(year_month[:4]), int(year_month[5:7])
+    pm = _prev_month(year_month)
+    return {
+        "_not_configured": True,
+        "period": {
+            "current":  {"label": f"Tháng {m}/{y}"},
+            "previous": {"label": f"Tháng {int(pm[5:7])}/{int(pm[:4])}"},
+        },
+        "domain_rating":     {"current": 0, "previous": 0, "history": []},
+        "referring_domains": {"current": 0, "previous": 0,
+                              "new_this_month": 0, "lost_this_month": 0, "net_change": 0},
+        "backlinks":         {"total": 0, "total_previous": 0,
+                              "new_this_month": 0, "lost_this_month": 0,
+                              "dofollow_pct": 0, "nofollow_pct": 0},
+        "new_notable_backlinks": [],
+        "lost_backlinks":        [],
     }
 
 
@@ -191,12 +216,12 @@ class DataFetcher:
                 f"  → Lưu vào {ga4_sa}"
             )
 
-        # Semrush API key
+        # Semrush API key (optional — nếu không có, slide 10 hiển thị "chưa cấu hình")
         if not os.getenv("SEMRUSH_API_KEY"):
             issues.append(
-                "[Semrush] SEMRUSH_API_KEY chưa set\n"
+                "[Semrush⚠️] SEMRUSH_API_KEY chưa set — slide backlinks sẽ hiển thị N/A\n"
                 "  → semrush.com → Account Settings → API → Copy key\n"
-                "  → Thêm SEMRUSH_API_KEY=your_key vào .env"
+                "  → Thêm SEMRUSH_API_KEY=your_key vào .env (tùy chọn)"
             )
 
         # GA4 property ID
@@ -239,10 +264,9 @@ class DataFetcher:
 
         if not self.use_mock:
             issues = self.pre_flight_check()
-            # Chỉ block nếu thiếu file credentials hoặc Ahrefs key — không block nếu chỉ thiếu GSC_SITE_URL
+            # Block: thiếu Google credentials. Semrush là optional (⚠️ không block).
             hard_issues = [i for i in issues if "[GSC] Không tìm thấy" in i
                            or "[GA4] Không tìm thấy" in i
-                           or "[Semrush]" in i
                            or "[GA4] GA4_PROPERTY_ID" in i]
             if hard_issues:
                 raise RuntimeError(
@@ -268,10 +292,14 @@ class DataFetcher:
         ga4_fetcher.authenticate(property_id=ga4_property)
         ga4_data = ga4_fetcher.get_full_report(property_id=ga4_property, year_month=year_month)
 
-        # ── Semrush ───────────────────────────────────────────────────────────
-        ahr_fetcher = SemrushFetcher(use_mock=self.use_mock)
-        ahr_fetcher.authenticate()
-        ahr_data = ahr_fetcher.get_full_report(domain=domain, year_month=year_month)
+        # ── Semrush (optional) ────────────────────────────────────────────────
+        if self.use_mock or os.getenv("SEMRUSH_API_KEY"):
+            ahr_fetcher = SemrushFetcher(use_mock=self.use_mock)
+            ahr_fetcher.authenticate()
+            ahr_data = ahr_fetcher.get_full_report(domain=domain, year_month=year_month)
+        else:
+            print("   ⚠️  Semrush: SEMRUSH_API_KEY chưa set — slide backlinks sẽ hiển thị N/A")
+            ahr_data = _null_backlinks_data(year_month)
 
         # ── Comparison (auto-generated) ────────────────────────────────────
         if self.use_mock:
