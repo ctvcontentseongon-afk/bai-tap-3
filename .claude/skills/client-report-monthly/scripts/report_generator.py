@@ -5,15 +5,29 @@ Usage (mock):
     python scripts/report_generator.py \\
         --client "Viettel Store" --domain viettelstore.vn \\
         --month 2026-04 --brand viettel_store --mock
+
+Usage (real API — cần .env và credentials):
+    python scripts/report_generator.py \\
+        --client "Viettel Store" --domain viettelstore.vn \\
+        --month 2026-05 --brand viettel_store \\
+        --ga4-property 123456789 \\
+        --actions-file path/to/actions.json
 """
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from datetime import date
 from pathlib import Path
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 from pptx import Presentation
 from pptx.dml.color import RGBColor
@@ -1223,7 +1237,21 @@ def build_presentation(args) -> Path:
     if args.mock:
         data = load_mock_data()
     else:
-        raise NotImplementedError("Live API chưa triển khai — dùng --mock")
+        from data_fetcher import DataFetcher
+        ga4_prop = getattr(args, "ga4_property", None) or os.getenv("GA4_PROPERTY_ID", "")
+        if not ga4_prop:
+            raise ValueError(
+                "Thiếu --ga4-property (hoặc GA4_PROPERTY_ID trong .env).\n"
+                "Ví dụ: --ga4-property 123456789"
+            )
+        actions_file = getattr(args, "actions_file", None)
+        print(f"   📡 Đang fetch dữ liệu thật từ API...")
+        data = DataFetcher(use_mock=False).fetch_all(
+            domain       = args.domain,
+            ga4_property = ga4_prop,
+            year_month   = args.month,
+            actions_file = actions_file,
+        )
 
     period_vn = _format_month_vn(args.month)
     today_str = date.today().strftime("%d/%m/%Y")
@@ -1303,8 +1331,10 @@ def parse_args():
     p.add_argument("--domain",     required=True,   help="Domain (vd: viettelstore.vn)")
     p.add_argument("--month",      required=True,   help="Tháng YYYY-MM (vd: 2026-04)")
     p.add_argument("--brand",      default="default", help="Brand profile (mặc định: default)")
-    p.add_argument("--mock",       action="store_true", help="Dùng mock data")
-    p.add_argument("--output-dir", dest="output_dir",   help="Thư mục output")
+    p.add_argument("--mock",           action="store_true",   help="Dùng mock data")
+    p.add_argument("--output-dir",     dest="output_dir",     help="Thư mục output")
+    p.add_argument("--ga4-property",   dest="ga4_property",   help="GA4 Property ID (không có 'properties/')")
+    p.add_argument("--actions-file",   dest="actions_file",   help="Path tới actions.json (tùy chọn, dùng khi live API)")
     return p.parse_args()
 
 
